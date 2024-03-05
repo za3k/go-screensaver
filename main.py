@@ -18,18 +18,16 @@ sgf = requests.get(sgf_url).content
 with open("aiden.sgf", "wb") as f:
     f.write(sgf)
 
-
 def display_board(b):
-    import colorama
     for row in b:
         for spot in row:
-            print(colorama.Fore.RESET + colorama.Style.NORMAL, end='')
+            print(end='')
             if spot == "white":
-                print(colorama.Style.BRIGHT + "● ", end='')
+                print("● ", end='')
             if spot == "black":
                 print("○ ",end='')
             if spot == "blank":
-                print(colorama.Style.BRIGHT + colorama.Fore.BLACK + "· ",end='')
+                print("· ",end='')
         print()
 
 def wait_a_bit():
