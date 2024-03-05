@@ -25,9 +25,11 @@ def draw_square(im, x, y, rgb):
             set_pixel(im, x+i, y+j, rgb)
 
 def draw_white_square(im, x, y, rgb):
-    for i in range(DOT_SIZE):
-        for j in range(DOT_SIZE):
-            set_pixel(im, x+i+2, y+j-2, rgb)
+    x = x + 2
+    y = y + 2
+    for i in range(DOT_SIZE-4):
+        for j in range(DOT_SIZE-4):
+            set_pixel(im, x+i, y+j, rgb)
 
 
 
@@ -37,7 +39,7 @@ def draw_go_stone(im, row, col, is_black):
     if is_black:
         draw_square(im, x, y, (0, 0, 0))
     else:
-        draw_square(im, x, y, (255, 0, 0))
+        draw_square(im, x, y, (0, 0, 0))
     
 def board_to_image(b):
     im = np.full((HEIGHT,HEIGHT,3), 255, dtype=np.uint8)
@@ -53,7 +55,7 @@ def board_to_image(b):
 
             if square == "white":
                 draw_go_stone(im, row_num, col_num, False)
-                draw_white_square(im, (row_num+1)*GRID_SPACING, (col_num+1)*GRID_SPACING, [10,100,50])
+                draw_white_square(im, (row_num+1)*GRID_SPACING, (col_num+1)*GRID_SPACING, [255,255,255])
 
     # Draw numbers in stones (TODO)
     return im
