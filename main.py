@@ -1,7 +1,7 @@
 import requests
 from pprint import pprint
 
-AIDEN_URL="https://online-go.com/api/v1/players/94639233/games"
+AIDEN_URL="https://online-go.com/api/v1/players/946392/games"
 
 aiden_json = requests.get(AIDEN_URL).json()
 games = aiden_json["results"]
