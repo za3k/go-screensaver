@@ -1,3 +1,6 @@
+import sys
+print(sys.version)
+
 from pprint import pprint
 import time, subprocess, os
 import cv2
@@ -10,13 +13,14 @@ DOT_SIZE = 20
 GRID_SPACING = 30
 assert GRID_SPACING*19 + DOT_SIZE < min(WIDTH, HEIGHT)
 
-def draw_dot(im, x, y, rgb):
+def set_pixel(im, x, y, rgb):
     r,g,b = rgb
+    im[x][y][:] = b,g,r
+
+def draw_dot(im, x, y, rgb):
     for i in range(DOT_SIZE):
         for j in range(DOT_SIZE):
-            im[x+i][y+j][0] = b # R
-            im[x+i][y+j][1] = g # G
-            im[x+i][y+j][2] = r # B
+            set_pixel(im, x+i, y+j, rgb)
 
 def draw_filled_circle(im, row, col, is_black):
     x, y = row*GRID_SPACING, col*GRID_SPACING
